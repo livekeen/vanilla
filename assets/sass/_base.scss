@@ -1,0 +1,57 @@
+/*------------------------------------
+  :: Frameworks
+------------------------------------*/
+
+@import "bourbon";
+@import "normalize";
+
+/*------------------------------------
+	Colour Reference
+------------------------------------*/
+$grey:              #999;
+$light-grey:        #ccc;
+$dark-grey:         #404956;
+$magenta:           #e39;
+
+$link:              #09c;
+$link-hover:        #3cf;
+$font-colour:       $dark-grey;
+
+/*------------------------------------
+	:: Fonts
+------------------------------------*/
+
+$sans-serif:        "Freight-Sans-Pro", "Helvetica Neue", sans-serif;
+
+$header-font:       $sans-serif;
+$body-font:         $sans-serif;
+
+/*------------------------------------
+	:: Media Query Breakpoints
+------------------------------------*/
+
+$break-small:       480px;
+$break-medium:      1024px;
+$break-large:       1200px;
+
+@mixin respond-to($media) {
+  @if $media == wide-screens {
+    @media only screen and (min-width: $break-large - 1) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-medium - 1) { @content; }
+  }
+  @else if $media == handhelds {
+    @media only screen and (min-width: $break-small) { @content; }
+  }
+}
+
+/*------------------------------------
+	:: Mixins
+------------------------------------*/
+
+@mixin hide-text{
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+}

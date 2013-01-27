@@ -1,0 +1,12 @@
+TEAM
+
+    Kevin Lee -- Designer -- @livekeen
+
+
+SITE
+
+    HTML
+    CSS
+    Codekit -- incident57.com/codekit
+    Normalize -- necolas.github.com/normalize.css
+    Bourbon -- bourbon.io

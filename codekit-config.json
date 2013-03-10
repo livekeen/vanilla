@@ -1,6 +1,6 @@
 {
   "CodeKitInfo" : "This is a CodeKit project configuration file. It is designed to sync project settings across multiple machines. Modifying the contents of this file can be a poor life decision if you don't know what you're doing. This file is not useful unless accompanied by the project that created it in CodeKit. For more information, see: http:\/\/incident57.com\/codekit",
-  "creatorBuild" : "8248",
+  "creatorBuild" : "8283",
   "files" : {
     "\/assets\/sass\/_normalize.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -14,17 +14,16 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
-    "\/assets\/sass\/_base.scss" : {
+    "\/assets\/img\/sasami.jpg" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/_base.scss",
-      "outputStyle" : 3,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/_base.css",
-      "fileType" : 4,
-      "debugStyle" : 0
+      "inputAbbreviatedPath" : "\/assets\/img\/sasami.jpg",
+      "processed" : 1,
+      "outputAbbreviatedPath" : "\/assets\/img\/sasami.jpg",
+      "initialSize" : 74572,
+      "fileType" : 4096
     },
     "\/assets\/sass\/_header.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -37,6 +36,15 @@
       "outputAbbreviatedPath" : "\/assets\/css\/_header.css",
       "fileType" : 4,
       "debugStyle" : 0
+    },
+    "\/assets\/css\/styles.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/css\/styles.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/index.html" : {
       "ignoreWasSetByUser" : 0,
@@ -119,14 +127,17 @@
       "outputAbbreviatedPath" : "\/_header.html",
       "fileType" : 65536
     },
-    "\/assets\/css\/styles.css" : {
+    "\/assets\/sass\/_base.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/css\/styles.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
+      "inputAbbreviatedPath" : "\/assets\/sass\/_base.scss",
+      "outputStyle" : 3,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/assets\/css\/_base.css",
+      "fileType" : 4,
+      "debugStyle" : 0
     },
     "\/assets\/sass\/_content.scss" : {
       "ignoreWasSetByUser" : 0,

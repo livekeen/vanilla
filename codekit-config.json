@@ -37,15 +37,6 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
-    "\/assets\/css\/styles.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/css\/styles.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
     "\/index.html" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -55,6 +46,18 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
+    "\/assets\/sass\/_elements.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/sass\/_elements.scss",
+      "outputStyle" : 3,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/assets\/css\/_elements.css",
+      "fileType" : 4,
+      "debugStyle" : 0
+    },
     "\/assets\/kit\/_nav.kit" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -63,6 +66,18 @@
       "inputAbbreviatedPath" : "\/assets\/kit\/_nav.kit",
       "outputAbbreviatedPath" : "\/_nav.html",
       "fileType" : 65536
+    },
+    "\/assets\/sass\/_typography.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/sass\/_typography.scss",
+      "outputStyle" : 3,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/assets\/css\/_typography.css",
+      "fileType" : 4,
+      "debugStyle" : 0
     },
     "\/assets\/sass\/_footer.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -106,17 +121,14 @@
       "outputAbbreviatedPath" : "\/index.html",
       "fileType" : 65536
     },
-    "\/assets\/sass\/_structure.scss" : {
+    "\/assets\/css\/styles.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/_structure.scss",
-      "outputStyle" : 3,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/_structure.css",
-      "fileType" : 4,
-      "debugStyle" : 0
+      "inputAbbreviatedPath" : "\/assets\/css\/styles.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/assets\/kit\/_header.kit" : {
       "ignoreWasSetByUser" : 0,

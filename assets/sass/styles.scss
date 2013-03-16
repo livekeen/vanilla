@@ -2,10 +2,11 @@
 	Table of Contents
 --------------------------------------
 :: Setup
-:: Structure
+:: Elements
 :: Header
 :: Content
 :: Footer
+:: Typography
 
 */
 
@@ -19,7 +20,7 @@
 	:: Structure
 ------------------------------------*/
 
-@import "structure";
+@import "elements";
 
 /*------------------------------------
 	:: Header
@@ -38,3 +39,9 @@
 ------------------------------------*/
 
 @import "footer";
+
+/*------------------------------------
+	:: Typography
+------------------------------------*/
+
+@import "typography";

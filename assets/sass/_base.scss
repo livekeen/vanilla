@@ -6,7 +6,7 @@
 @import "normalize";
 
 /*------------------------------------
-	Colour Reference
+	:: Colour Reference
 ------------------------------------*/
 $grey:              #999;
 $light-grey:        #ccc;
@@ -22,6 +22,7 @@ $font-colour:       $dark-grey;
 ------------------------------------*/
 
 $sans-serif:        "Freight-Sans-Pro", "Helvetica Neue", sans-serif;
+$serif:             Georgia, serif;
 
 $header-font:       $sans-serif;
 $body-font:         $sans-serif;
@@ -54,4 +55,23 @@ $break-large:       1200px;
     overflow: hidden;
     text-indent: 100%;
     white-space: nowrap;
+}
+
+/*------------------------------------
+  :: Global
+------------------------------------*/
+
+body {
+  -webkit-font-smoothing:antialiased; 
+  -webkit-text-size-adjust:none; 
+}
+
+::-moz-selection {
+  background-color: #fff198;
+  color: #1c2f3b;
+}
+
+::selection {
+  background-color: #fff198;
+  color: #1c2f3b;
 }

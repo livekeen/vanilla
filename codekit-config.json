@@ -55,18 +55,6 @@
       "outputAbbreviatedPath" : "\/_nav.html",
       "fileType" : 65536
     },
-    "\/assets\/sass\/_typography.scss" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/_typography.scss",
-      "outputStyle" : 3,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/_typography.css",
-      "fileType" : 4,
-      "debugStyle" : 0
-    },
     "\/assets\/sass\/_footer.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -76,6 +64,18 @@
       "outputStyle" : 3,
       "shouldRunBless" : 0,
       "outputAbbreviatedPath" : "\/assets\/css\/_footer.css",
+      "fileType" : 4,
+      "debugStyle" : 0
+    },
+    "\/assets\/sass\/_typography.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/sass\/_typography.scss",
+      "outputStyle" : 3,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/assets\/css\/_typography.css",
       "fileType" : 4,
       "debugStyle" : 0
     },
@@ -103,14 +103,17 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
-    "\/assets\/kit\/_footer.kit" : {
+    "\/assets\/sass\/_base.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/kit\/_footer.kit",
-      "outputAbbreviatedPath" : "\/_footer.html",
-      "fileType" : 65536
+      "inputAbbreviatedPath" : "\/assets\/sass\/_base.scss",
+      "outputStyle" : 3,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/assets\/css\/_base.css",
+      "fileType" : 4,
+      "debugStyle" : 0
     },
     "\/assets\/kit\/index.kit" : {
       "ignoreWasSetByUser" : 0,
@@ -139,17 +142,14 @@
       "outputAbbreviatedPath" : "\/_header.html",
       "fileType" : 65536
     },
-    "\/assets\/sass\/_base.scss" : {
+    "\/assets\/kit\/_footer.kit" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/_base.scss",
-      "outputStyle" : 3,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/_base.css",
-      "fileType" : 4,
-      "debugStyle" : 0
+      "inputAbbreviatedPath" : "\/assets\/kit\/_footer.kit",
+      "outputAbbreviatedPath" : "\/_footer.html",
+      "fileType" : 65536
     },
     "\/assets\/sass\/_header.scss" : {
       "ignoreWasSetByUser" : 0,

@@ -1,0 +1,11 @@
+.masthead {
+	h1 a {
+		background-image: url(../img/logo.svg);
+		display: block;
+		height: 5rem;
+		width: 5rem;
+
+		@include background-size(cover);
+		@include hide-text;
+	}
+}

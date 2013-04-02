@@ -32,7 +32,7 @@ $body-font:         $sans-serif;
 ------------------------------------*/
 
 $break-small:       480px;
-$break-medium:      1024px;
+$break-medium:      800px;
 $break-large:       1200px;
 
 @mixin respond-to($media) {
@@ -45,6 +45,13 @@ $break-large:       1200px;
   @else if $media == handhelds {
     @media only screen and (min-width: $break-small) { @content; }
   }
+}
+
+@mixin width {
+  margin: 0 auto;
+
+  @include respond-to(medium-screens) { max-width:780px; }
+  @include respond-to(wide-screens) { max-width:1100px; }
 }
 
 /*------------------------------------

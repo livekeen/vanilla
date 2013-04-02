@@ -1,12 +1,14 @@
-TEAM
-
-    Kevin Lee -- Designer -- @livekeen
-
-
-SITE
-
-    HTML
-    CSS
-    Codekit -- incident57.com/codekit
-    Normalize -- necolas.github.com/normalize.css
-    Bourbon -- bourbon.io
+/* TEAM */
+Designer: Kevin Lee
+livekeen.com: hi@livekeen.com
+Twitter: @livekeen
+Location: Toronto, Canada.
+							
+/* THANKS */							
+Will Howard for showing me SASS
+                
+/* SITE */                            
+Last update: 2013/04/01 
+Standards: HTML5, CSS3
+Components: SASS, Normalize.css, Bourbon      
+Software: Sublime Text, Codekit, Codebox, Github, Frank DeLoupe, LittleIpsum

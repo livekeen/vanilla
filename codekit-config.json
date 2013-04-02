@@ -25,18 +25,6 @@
       "initialSize" : 74572,
       "fileType" : 4096
     },
-    "\/assets\/sass\/_header.scss" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/_header.scss",
-      "outputStyle" : 3,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/_header.css",
-      "fileType" : 4,
-      "debugStyle" : 0
-    },
     "\/index.html" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -103,6 +91,18 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
+    "\/assets\/sass\/_layout.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/sass\/_layout.scss",
+      "outputStyle" : 3,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/assets\/css\/_layout.css",
+      "fileType" : 4,
+      "debugStyle" : 0
+    },
     "\/assets\/kit\/_footer.kit" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -151,15 +151,15 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
-    "\/assets\/sass\/_content.scss" : {
+    "\/assets\/sass\/_header.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/_content.scss",
+      "inputAbbreviatedPath" : "\/assets\/sass\/_header.scss",
       "outputStyle" : 3,
       "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/_content.css",
+      "outputAbbreviatedPath" : "\/assets\/css\/_header.css",
       "fileType" : 4,
       "debugStyle" : 0
     }

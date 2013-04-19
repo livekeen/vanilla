@@ -2,14 +2,17 @@
   "CodeKitInfo" : "This is a CodeKit project configuration file. It is designed to sync project settings across multiple machines. Modifying the contents of this file can be a poor life decision if you don't know what you're doing. This file is not useful unless accompanied by the project that created it in CodeKit. For more information, see: http:\/\/incident57.com\/codekit",
   "creatorBuild" : "8283",
   "files" : {
-    "\/assets\/kit\/_footer.kit" : {
+    "\/assets\/sass\/partials\/_normalize.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/kit\/_footer.kit",
-      "outputAbbreviatedPath" : "\/_footer.html",
-      "fileType" : 65536
+      "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_normalize.scss",
+      "outputStyle" : 3,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/assets\/css\/partials\/_normalize.css",
+      "fileType" : 4,
+      "debugStyle" : 0
     },
     "\/assets\/sass\/modules\/_colours.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -23,15 +26,15 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
-    "\/assets\/sass\/partials\/_hyperlinks.scss" : {
+    "\/assets\/sass\/modules\/_all.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_hyperlinks.scss",
+      "inputAbbreviatedPath" : "\/assets\/sass\/modules\/_all.scss",
       "outputStyle" : 3,
       "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/partials\/_hyperlinks.css",
+      "outputAbbreviatedPath" : "\/assets\/css\/modules\/_all.css",
       "fileType" : 4,
       "debugStyle" : 0
     },
@@ -55,15 +58,15 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
-    "\/assets\/sass\/partials\/_header.scss" : {
+    "\/assets\/sass\/partials\/_hyperlinks.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_header.scss",
+      "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_hyperlinks.scss",
       "outputStyle" : 3,
       "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/partials\/_header.css",
+      "outputAbbreviatedPath" : "\/assets\/css\/partials\/_hyperlinks.css",
       "fileType" : 4,
       "debugStyle" : 0
     },
@@ -124,15 +127,6 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
-    "\/assets\/kit\/index.kit" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/kit\/index.kit",
-      "outputAbbreviatedPath" : "\/index.html",
-      "fileType" : 65536
-    },
     "\/assets\/sass\/modules\/_mixins.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -145,6 +139,27 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
+    "\/assets\/kit\/_footer.kit" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/kit\/_footer.kit",
+      "outputAbbreviatedPath" : "\/_footer.html",
+      "fileType" : 65536
+    },
+    "\/assets\/sass\/partials\/_grids.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_grids.scss",
+      "outputStyle" : 3,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/assets\/css\/partials\/_grids.css",
+      "fileType" : 4,
+      "debugStyle" : 0
+    },
     "\/assets\/css\/styles.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -154,29 +169,14 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/assets\/sass\/partials\/_normalize.scss" : {
+    "\/assets\/kit\/index.kit" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_normalize.scss",
-      "outputStyle" : 3,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/partials\/_normalize.css",
-      "fileType" : 4,
-      "debugStyle" : 0
-    },
-    "\/assets\/sass\/modules\/_all.scss" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/modules\/_all.scss",
-      "outputStyle" : 3,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/modules\/_all.css",
-      "fileType" : 4,
-      "debugStyle" : 0
+      "inputAbbreviatedPath" : "\/assets\/kit\/index.kit",
+      "outputAbbreviatedPath" : "\/index.html",
+      "fileType" : 65536
     },
     "\/assets\/kit\/_header.kit" : {
       "ignoreWasSetByUser" : 0,

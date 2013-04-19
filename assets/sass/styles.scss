@@ -1,33 +1,38 @@
 /*------------------------------------
 	Table of Contents
 --------------------------------------
-:: Setup
-:: Elements
-:: Layout
-:: Typography
+
+:: Modules and Variables
+
+:: Partials
+	Normalize
+	Buttons
+	Figures
+	Grids
+	Typography
+
+:: Third-party
+	jQuery ui or something
 
 */
 
 /*------------------------------------
-	:: Setup
+	:: Modules and Variables
 ------------------------------------*/
 
-@import "base";
+@import "partials/base";
 
 /*------------------------------------
-	:: Elements
+	:: Partials
 ------------------------------------*/
 
-@import "elements";
+@import "partials/normalize";
+
+@import "partials/grids";
+@import "partials/hyperlinks";
+@import "partials/header";
+@import "partials/typography";
 
 /*------------------------------------
-	:: Layout
+	:: Third-party
 ------------------------------------*/
-
-@import "layout";
-
-/*------------------------------------
-	:: Typography
-------------------------------------*/
-
-@import "typography";

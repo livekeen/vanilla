@@ -1,3 +1,18 @@
+::-moz-selection {
+  background-color: #fff198;
+  color: #1c2f3b;
+}
+
+::selection {
+  background-color: #fff198;
+  color: #1c2f3b;
+}
+
+body {
+  -webkit-font-smoothing:antialiased; 
+  -webkit-text-size-adjust:none; 
+}
+
 h1,h2,h3,h4,h5,h6 {
 	color: #222;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -17,8 +32,3 @@ h3 { font-weight:500; font-size: 18px; }
 h4 { font-weight:500; font-size: 23px; }
 h5 { font-weight:500; font-size: 18px; }
 h6 { font-weight:500; font-size: 14px; text-transform: uppercase; color:#444; }
-
-ul li {
-	margin: 0;
-	padding: 0;
-}

@@ -1,19 +1,7 @@
 {
   "CodeKitInfo" : "This is a CodeKit project configuration file. It is designed to sync project settings across multiple machines. Modifying the contents of this file can be a poor life decision if you don't know what you're doing. This file is not useful unless accompanied by the project that created it in CodeKit. For more information, see: http:\/\/incident57.com\/codekit",
-  "creatorBuild" : "8376",
+  "creatorBuild" : "8403",
   "files" : {
-    "\/assets\/sass\/_normalize.scss" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/_normalize.scss",
-      "outputStyle" : 3,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/_normalize.css",
-      "fileType" : 4,
-      "debugStyle" : 0
-    },
     "\/assets\/img\/sasami.jpg" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -34,6 +22,18 @@
       "outputAbbreviatedPath" : "\/_head.html",
       "fileType" : 65536
     },
+    "\/assets\/sass\/partials\/_typography.sass" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_typography.sass",
+      "outputStyle" : 3,
+      "shouldRunBless" : 1,
+      "outputAbbreviatedPath" : "\/assets\/css\/partials\/_typography.css",
+      "fileType" : 2,
+      "debugStyle" : 0
+    },
     "\/index.html" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -43,18 +43,6 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
-    "\/assets\/sass\/partials\/_typography.sass" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_typography.sass",
-      "outputStyle" : 3,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/partials\/_typography.css",
-      "fileType" : 2,
-      "debugStyle" : 0
-    },
     "\/assets\/sass\/_mixins.sass" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -62,7 +50,7 @@
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/assets\/sass\/_mixins.sass",
       "outputStyle" : 3,
-      "shouldRunBless" : 0,
+      "shouldRunBless" : 1,
       "outputAbbreviatedPath" : "\/assets\/css\/_mixins.css",
       "fileType" : 2,
       "debugStyle" : 0
@@ -74,7 +62,7 @@
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/assets\/sass\/_variables.sass",
       "outputStyle" : 3,
-      "shouldRunBless" : 0,
+      "shouldRunBless" : 1,
       "outputAbbreviatedPath" : "\/assets\/css\/_variables.css",
       "fileType" : 2,
       "debugStyle" : 0
@@ -95,7 +83,7 @@
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/assets\/sass\/styles.sass",
       "outputStyle" : 3,
-      "shouldRunBless" : 0,
+      "shouldRunBless" : 1,
       "outputAbbreviatedPath" : "\/assets\/css\/styles.css",
       "fileType" : 2,
       "debugStyle" : 0
@@ -107,7 +95,7 @@
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_hyperlinks.sass",
       "outputStyle" : 3,
-      "shouldRunBless" : 0,
+      "shouldRunBless" : 1,
       "outputAbbreviatedPath" : "\/assets\/css\/partials\/_hyperlinks.css",
       "fileType" : 2,
       "debugStyle" : 0
@@ -119,7 +107,7 @@
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_grids.sass",
       "outputStyle" : 3,
-      "shouldRunBless" : 0,
+      "shouldRunBless" : 1,
       "outputAbbreviatedPath" : "\/assets\/css\/partials\/_grids.css",
       "fileType" : 2,
       "debugStyle" : 0
@@ -151,16 +139,16 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/assets\/sass\/partials\/_base.sass" : {
+    "\/assets\/sass\/partials\/_normalize.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_base.sass",
+      "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_normalize.scss",
       "outputStyle" : 3,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/partials\/_base.css",
-      "fileType" : 2,
+      "shouldRunBless" : 1,
+      "outputAbbreviatedPath" : "\/assets\/css\/partials\/_normalize.css",
+      "fileType" : 4,
       "debugStyle" : 0
     },
     "\/assets\/kit\/_header.kit" : {
@@ -172,16 +160,16 @@
       "outputAbbreviatedPath" : "\/_header.html",
       "fileType" : 65536
     },
-    "\/assets\/sass\/partials\/_normalize.scss" : {
+    "\/assets\/sass\/partials\/_base.sass" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_normalize.scss",
+      "inputAbbreviatedPath" : "\/assets\/sass\/partials\/_base.sass",
       "outputStyle" : 3,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/css\/partials\/_normalize.css",
-      "fileType" : 4,
+      "shouldRunBless" : 1,
+      "outputAbbreviatedPath" : "\/assets\/css\/partials\/_base.css",
+      "fileType" : 2,
       "debugStyle" : 0
     }
   },
@@ -228,7 +216,7 @@
     "kitAutoOutputPathRelativePath" : "",
     "lessAutoOutputPathReplace2" : "css",
     "jadeAutoOutputPathReplace2" : "",
-    "shouldRunBless" : 0,
+    "shouldRunBless" : 1,
     "stylusAutoOutputPathStyle" : 2,
     "coffeeCheckOutputStyle" : 0,
     "slimOutputStyle" : 1,

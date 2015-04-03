@@ -2,8 +2,7 @@
 My default starting point for all front-end builds
 
 ### New here?
-- This uses [Node.JS](https://nodejs.org) so be sure to download it before doing anything
-- Once you have Node.JS installed be sure to run `npm install` before getting started!
+Download Vanilla and run `$ npm install --global gulp && npm install` in that directory to get started.
 
 ### Getting Started
 1. Run `gulp` to build the project

@@ -46,7 +46,6 @@ var tasks = {
   scripts:      'scripts',
   images:       'images',
   fonts:        'fonts',
-  all:          ['watch', 'pages', 'styles', 'scripts', 'images'],
 };
 
 var AUTOPREFIXER_BROWSERS = [
@@ -61,15 +60,9 @@ var AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
-// var paths = {
-//  scripts: ['scripts/**/*.js', '!scripts/libs/'],
-//  libs: ['scripts/libs/jquery/dist/jquery.js', 'scripts/libs/underscore/underscore.js', 'scripts/backbone/backbone.js'],
-//  styles: ['styles/**/*.css'],
-//  html: ['index.html', '404.html'],
-//  images: ['images/**/*.png'],
-//  extras: ['crossdomain.xml', 'humans.txt', 'manifest.appcache', 'robots.txt', 'favicon.ico'],
-// };
-
+// REMOVE LATER:
+// IDEAS FOR IMPROVING GULPFILE:
+// https://github.com/google/web-starter-kit
 // http://www.justinmccandless.com/blog/A+Tutorial+for+Getting+Started+with+Gulp
 // http://markgoodyear.com/2014/01/getting-started-with-gulp
 
@@ -82,15 +75,13 @@ gulp.task('clean', del.bind(null, [basepaths.dist], {dot: true}));
 
 // Pages
 gulp.task(tasks.pages, function() {
-  // del([basepaths.dist + paths.pages]);
-  gulp.src(basepaths.app + paths.pages)
+  return gulp.src(basepaths.app + paths.pages)
     .pipe(gulp.dest(basepaths.dist)) // exports .html
 });
 
 // Styles
 gulp.task(tasks.styles, function() {
-  // del([basepaths.dist + paths.styles]);
-  gulp.src(basepaths.app + paths.styles)
+  return gulp.src(basepaths.app + paths.styles)
     .pipe(sass({ style: 'expanded' }))
     .pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
     .pipe(gulp.dest(basepaths.dist)) // exports *.css
@@ -103,7 +94,6 @@ gulp.task(tasks.styles, function() {
 
 // Scripts
 gulp.task(tasks.scripts, function() {
-  // del([basepaths.dist + paths.scripts]);
   return gulp.src(basepaths.app + paths.scripts)
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
@@ -117,7 +107,6 @@ gulp.task(tasks.scripts, function() {
 
 // Images
 gulp.task(tasks.images, function() {
-  // del([basepaths.dist + paths.images]);
   return gulp.src(basepaths.app + paths.images)
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
     .pipe(gulp.dest(basepaths.dist))

@@ -8,13 +8,13 @@ var
   browserSync   = require('browser-sync'),
   cache         = require('gulp-cache'),
   concat        = require('gulp-concat'),
+  del           = require('del'),
   imagemin      = require('gulp-imagemin'),
   jshint        = require('gulp-jshint'),
   minifycss     = require('gulp-minify-css'),
   notify        = require('gulp-notify'),
   reload        = browserSync.reload,
   rename        = require('gulp-rename'),
-  clean         = require('gulp-rimraf'),
   sass          = require('gulp-ruby-sass'),
   stylus        = require('gulp-stylus'),
   // sass          = require('gulp-sass'),
@@ -60,9 +60,8 @@ var tasks = {
 // ---------------------------------
 
 // Clean dist directory
-gulp.task('clean', function() {
-  return gulp.src(basepaths.dist, {read: false})
-  .pipe(clean());
+gulp.task('clean', function(cb) {
+  del(['dist'], cb);
 });
 
 // Pages

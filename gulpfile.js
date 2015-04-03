@@ -1,5 +1,5 @@
 // ---------------------------------
-// :: Load plugins
+// :: Load Gulp & plugins we'll use
 // ---------------------------------
 
 var
@@ -15,6 +15,7 @@ var
   notify        = require('gulp-notify'),
   reload        = browserSync.reload,
   rename        = require('gulp-rename'),
+  runSequence   = require('run-sequence'),
   sass          = require('gulp-ruby-sass'),
   stylus        = require('gulp-stylus'),
   // sass          = require('gulp-sass'),
@@ -32,9 +33,10 @@ var basepaths = {
 
 var paths = {
   pages:        'views/pages/**/*',
-  styles:       'assets/stylesheets/**/*',
+  styles:       'assets/styles/**/*',
   scripts:      'assets/scripts/**/*',
   images:       'assets/images/**/*',
+  fonts:        'assets/fonts/**/*',
   extras:       ['assets/fonts/**/*', 'assets/favicons/**/*', 'assets/checkout/**/*'],
 };
 
@@ -43,8 +45,21 @@ var tasks = {
   styles:       'styles',
   scripts:      'scripts',
   images:       'images',
+  fonts:        'fonts',
   all:          ['watch', 'pages', 'styles', 'scripts', 'images'],
 };
+
+var AUTOPREFIXER_BROWSERS = [
+  'ie >= 10',
+  'ie_mob >= 10',
+  'ff >= 30',
+  'chrome >= 34',
+  'safari >= 7',
+  'opera >= 23',
+  'ios >= 7',
+  'android >= 4.4',
+  'bb >= 10'
+];
 
 // var paths = {
 //  scripts: ['scripts/**/*.js', '!scripts/libs/'],
@@ -63,23 +78,21 @@ var tasks = {
 // ---------------------------------
 
 // Clean dist directory
-gulp.task('clean', function(cb) {
-  del(basepaths.dist, cb);
-});
+gulp.task('clean', del.bind(null, [basepaths.dist], {dot: true}));
 
 // Pages
 gulp.task(tasks.pages, function() {
-  del([basepaths.dist + paths.pages]);
+  // del([basepaths.dist + paths.pages]);
   gulp.src(basepaths.app + paths.pages)
     .pipe(gulp.dest(basepaths.dist)) // exports .html
 });
 
 // Styles
 gulp.task(tasks.styles, function() {
-  del([basepaths.dist + paths.styles]);
+  // del([basepaths.dist + paths.styles]);
   gulp.src(basepaths.app + paths.styles)
     .pipe(sass({ style: 'expanded' }))
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
     .pipe(gulp.dest(basepaths.dist)) // exports *.css
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())
@@ -90,7 +103,7 @@ gulp.task(tasks.styles, function() {
 
 // Scripts
 gulp.task(tasks.scripts, function() {
-  del([basepaths.dist + paths.scripts]);
+  // del([basepaths.dist + paths.scripts]);
   return gulp.src(basepaths.app + paths.scripts)
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
@@ -104,29 +117,61 @@ gulp.task(tasks.scripts, function() {
 
 // Images
 gulp.task(tasks.images, function() {
-  del([basepaths.dist + paths.images]);
+  // del([basepaths.dist + paths.images]);
   return gulp.src(basepaths.app + paths.images)
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
-    .pipe(gulp.dest(basepaths.dist + 'img/'))
+    .pipe(gulp.dest(basepaths.dist))
     .pipe(notify({ message: 'Images task complete' }));
 });
 
-// Watch for file changes
-gulp.task('watch', function() {
-
-  // Watch page files
-  gulp.watch(basepaths.app + paths.pages + '/**/*', [tasks.pages]);
-
-  // Watch stylesheet files
-  gulp.watch(basepaths.app + paths.styles, [tasks.styles]);
-
-  // Watch script files
-  gulp.watch(basepaths.app + paths.scripts + '/**/*', [tasks.scripts]);
-
-  // Watch image files
-  gulp.watch(basepaths.app + paths.images + '/**/*', [tasks.images]);
-
+// Fonts
+gulp.task(tasks.fonts, function () {
+  return gulp.src([basepaths.app + paths.fonts])
+    .pipe(gulp.dest(basepaths.dist));
 });
 
+// Copy all files at the root level (app)
+gulp.task('copy', function () {
+  // return gulp.src([basepaths.app + '*'], {dot: true})
+  //   .pipe(gulp.dest(basepaths.dist));
+});
+
+// Watch files for changes & reload
+gulp.task('serve', [tasks.styles], function () {
+  browserSync({
+    notify: false,
+    // Customize the BrowserSync console logging prefix
+    logPrefix: 'WSK',
+    // Run as an https by uncommenting 'https: true'
+    // Note: this uses an unsigned certificate which on first access
+    //       will present a certificate warning in the browser.
+    // https: true,
+    server: ['.tmp', basepaths.dist]
+  });
+
+  gulp.watch([basepaths.app + paths.pages], reload);
+  gulp.watch([basepaths.app + paths.styles], [tasks.styles, reload]);
+  gulp.watch([basepaths.app + paths.scripts], [tasks.scripts]);
+  gulp.watch([basepaths.app + paths.images], reload);
+});
+
+// gulp.task('watch', function() {
+//   // Watch page files
+//   gulp.watch(basepaths.app + paths.pages + '/**/*', [tasks.pages]);
+
+//   // Watch stylesheet files
+//   gulp.watch(basepaths.app + paths.styles, [tasks.styles]);
+
+//   // Watch script files
+//   gulp.watch(basepaths.app + paths.scripts + '/**/*', [tasks.scripts]);
+
+//   // Watch image files
+//   gulp.watch(basepaths.app + paths.images + '/**/*', [tasks.images]);
+
+// });
+
 // Default task
-gulp.task('default', tasks.all);
+gulp.task('default', ['clean'], function (cb) {
+  runSequence(tasks.styles, [tasks.scripts, tasks.pages, tasks.images, tasks.fonts, 'copy'], cb);
+});
+// gulp.task('default', tasks.all);

@@ -28,6 +28,7 @@
     "gulp-sass": "^0.7.2",
     "gulp-stylus": "^2.0.1",
     "gulp-uglify": "^0.3.1",
-    "lodash": "^3.6.0"
+    "lodash": "^3.6.0",
+    "run-sequence": "^1.0.2"
   }
 }

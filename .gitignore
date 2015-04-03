@@ -1,7 +1,4 @@
-dist
+_dist
 .sass-cache
 .DS_Store
 node_modules
-.DS_Store
-
-.DS_Store

@@ -27,7 +27,7 @@ var
 
 var basepaths = {
   app:          'app/',
-  dist:         'dist/',
+  dist:         '_dist/',
 };
 
 var paths = {
@@ -39,8 +39,11 @@ var paths = {
 };
 
 var tasks = {
-  base:         ['pages', 'styles', 'scripts', 'images'],
-  all:          ['pages', 'styles', 'scripts', 'images', 'watch'],
+  pages:        'pages',
+  styles:       'styles',
+  scripts:      'scripts',
+  images:       'images',
+  all:          ['watch', 'pages', 'styles', 'scripts', 'images'],
 };
 
 // var paths = {
@@ -65,48 +68,64 @@ gulp.task('clean', function(cb) {
 });
 
 // Pages
-gulp.task('pages', ['clean'],  function() {
-  return gulp.src(basepaths.app + paths.pages)
-  .pipe(gulp.dest(basepaths.dist)) // exports .html
+gulp.task(tasks.pages, function() {
+  del([basepaths.dist + paths.pages]);
+  gulp.src(basepaths.app + paths.pages)
+    .pipe(gulp.dest(basepaths.dist)) // exports .html
 });
 
 // Styles
-gulp.task('styles', ['clean'],  function() {
-  return gulp.src(basepaths.app + paths.styles)
-  .pipe(sass({ style: 'expanded' }))
-  .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-  .pipe(gulp.dest(basepaths.dist)) // exports *.css
-  .pipe(rename({suffix: '.min'}))
-  .pipe(minifycss())
-  .pipe(gulp.dest(basepaths.dist)) // exports *.min.css
-  .pipe(reload({stream: true}))
-  .pipe(notify({ message: 'Styles task complete' }));
+gulp.task(tasks.styles, function() {
+  del([basepaths.dist + paths.styles]);
+  gulp.src(basepaths.app + paths.styles)
+    .pipe(sass({ style: 'expanded' }))
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(gulp.dest(basepaths.dist)) // exports *.css
+    .pipe(rename({suffix: '.min'}))
+    .pipe(minifycss())
+    .pipe(gulp.dest(basepaths.dist)) // exports *.min.css
+    .pipe(reload({stream: true}))
+    .pipe(notify({ message: 'Styles task complete' }));
 });
 
 // Scripts
-gulp.task('scripts', ['clean'], function() {
+gulp.task(tasks.scripts, function() {
+  del([basepaths.dist + paths.scripts]);
   return gulp.src(basepaths.app + paths.scripts)
-  .pipe(jshint())
-  .pipe(jshint.reporter('default'))
-  .pipe(concat('functions.js'))
-  .pipe(gulp.dest(basepaths.dist)) // exports functions.js
-  .pipe(rename({ suffix: '.min' }))
-  .pipe(uglify())
-  .pipe(gulp.dest(basepaths.dist)) // exports functions.min.js
-  .pipe(notify({ message: 'Scripts task complete' }));
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+    .pipe(concat('functions.js'))
+    .pipe(gulp.dest(basepaths.dist)) // exports functions.js
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(uglify())
+    .pipe(gulp.dest(basepaths.dist)) // exports functions.min.js
+    .pipe(notify({ message: 'Scripts task complete' }));
 });
 
 // Images
-gulp.task('images', ['clean'], function() {
+gulp.task(tasks.images, function() {
+  del([basepaths.dist + paths.images]);
   return gulp.src(basepaths.app + paths.images)
-  .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
-  .pipe(gulp.dest(basepaths.dist + 'img/'))
-  .pipe(notify({ message: 'Images task complete' }));
+    .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
+    .pipe(gulp.dest(basepaths.dist + 'img/'))
+    .pipe(notify({ message: 'Images task complete' }));
 });
 
 // Watch for file changes
 gulp.task('watch', function() {
-  gulp.watch(basepaths.app + '/**/*', tasks.base);
+
+  // Watch page files
+  gulp.watch(basepaths.app + paths.pages + '/**/*', [tasks.pages]);
+
+  // Watch stylesheet files
+  gulp.watch(basepaths.app + paths.styles, [tasks.styles]);
+
+  // Watch script files
+  gulp.watch(basepaths.app + paths.scripts + '/**/*', [tasks.scripts]);
+
+  // Watch image files
+  gulp.watch(basepaths.app + paths.images + '/**/*', [tasks.images]);
+
 });
 
 // Default task

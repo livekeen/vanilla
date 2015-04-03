@@ -155,23 +155,7 @@ gulp.task('serve', [tasks.styles], function () {
   gulp.watch([basepaths.app + paths.images], reload);
 });
 
-// gulp.task('watch', function() {
-//   // Watch page files
-//   gulp.watch(basepaths.app + paths.pages + '/**/*', [tasks.pages]);
-
-//   // Watch stylesheet files
-//   gulp.watch(basepaths.app + paths.styles, [tasks.styles]);
-
-//   // Watch script files
-//   gulp.watch(basepaths.app + paths.scripts + '/**/*', [tasks.scripts]);
-
-//   // Watch image files
-//   gulp.watch(basepaths.app + paths.images + '/**/*', [tasks.images]);
-
-// });
-
 // Default task
 gulp.task('default', ['clean'], function (cb) {
   runSequence(tasks.styles, [tasks.scripts, tasks.pages, tasks.images, tasks.fonts, 'copy'], cb);
 });
-// gulp.task('default', tasks.all);

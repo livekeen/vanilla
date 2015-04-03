@@ -61,7 +61,7 @@ var tasks = {
 
 // Clean dist directory
 gulp.task('clean', function(cb) {
-  del(['dist'], cb);
+  del(basepaths.dist, cb);
 });
 
 // Pages

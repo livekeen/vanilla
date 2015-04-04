@@ -10,6 +10,7 @@ var
   concat        = require('gulp-concat'),
   del           = require('del'),
   imagemin      = require('gulp-imagemin'),
+  jade          = require('gulp-jade'),
   jshint        = require('gulp-jshint'),
   minifycss     = require('gulp-minify-css'),
   notify        = require('gulp-notify'),
@@ -76,6 +77,7 @@ gulp.task('clean', del.bind(null, [basepaths.dist], {dot: true}));
 // Pages
 gulp.task(tasks.pages, function() {
   return gulp.src(basepaths.app + paths.pages)
+    .pipe(jade({pretty: true}))
     .pipe(gulp.dest(basepaths.dist)) // exports .html
 });
 

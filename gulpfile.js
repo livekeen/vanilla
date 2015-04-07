@@ -140,7 +140,7 @@ gulp.task('serve', [tasks.styles], function () {
     server: ['.tmp', basepaths.dist]
   });
 
-  gulp.watch([basepaths.app + paths.pages], reload);
+  gulp.watch([basepaths.app + paths.pages], [tasks.pages, reload]);
   gulp.watch([basepaths.app + paths.styles], [tasks.styles, reload]);
   gulp.watch([basepaths.app + paths.scripts], [tasks.scripts]);
   gulp.watch([basepaths.app + paths.images], reload);

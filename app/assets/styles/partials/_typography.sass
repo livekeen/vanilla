@@ -1,46 +1,58 @@
+// ---------------------------------
+// :: Typography
+// ---------------------------------
+
 ::-moz-selection 
-  background-color: #fff198
-  color: #1c2f3b
+  background-color: $primary-colour
+  color: darken($primary-colour, 20%)
 
 ::selection 
-  background-color: #fff198
-  color: #1c2f3b
+  background-color: $primary-colour
+  color: darken($primary-colour, 20%)
 
-body 
+body
   -webkit-font-smoothing: antialiased 
-  -webkit-text-size-adjust: none 
-
-
-h1,h2,h3,h4,h5,h6 
+  -webkit-text-size-adjust: none
+  color: $dark-grey
   font-family: $sans-serif
-  line-height: 1
-  margin: 0 0 1.5em
+
+h1, h2, h3, h4, h5, h6
+  letter-spacing: -0.025em
+  line-height: 1.25
+  margin: 1rem 0
 
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small 
   font-size: 60%
   line-height: 0
   text-transform: none
 
-h1
-  font-weight: $bold
-  font-size: $h1-font-size 
-h2
-  font-weight: $bold
+h1, .h1
+  font-weight: $light
+  font-size: $h1-font-size
+h2, .h2
+  font-weight: $light
   font-size: $h2-font-size
-h3
-  font-weight: $bold
+h3, .h3
+  font-weight: $normal
   font-size: $h3-font-size
-h4
-  font-weight: $bold
+h4, .h4
+  font-weight: $normal
   font-size: $h4-font-size
-h5
-  font-weight: $bold
+h5, .h5
+  font-weight: $normal
   font-size: $h5-font-size
-h6
+h6, .h6
   font-weight: $bold
   font-size: $h6-font-size
   text-transform: uppercase
   color: #444
 
-.hero
-  text-align: center
+a
+  color: $link-colour
+  text-decoration: none
+
+b, strong
+  font-weight: $strong-font-weight
+
+p
+  line-height: 1.6

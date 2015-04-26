@@ -78,7 +78,7 @@ gulp.task('clean', del.bind(null, [basepaths.dist], {dot: true}));
 gulp.task(tasks.pages, function() {
   return gulp.src(basepaths.app + paths.pages)
     .pipe(jade({pretty: true}))
-    .pipe(gulp.dest(basepaths.dist)) // exports .html
+    .pipe(gulp.dest(basepaths.dist)); // exports .html
 });
 
 // Styles
@@ -142,7 +142,7 @@ gulp.task('serve', [tasks.styles], function () {
 
   gulp.watch([basepaths.app + paths.pages], [tasks.pages, reload]);
   gulp.watch([basepaths.app + paths.styles], [tasks.styles, reload]);
-  gulp.watch([basepaths.app + paths.scripts], [tasks.scripts]);
+  gulp.watch([basepaths.app + paths.scripts], [tasks.scripts, reload]);
   gulp.watch([basepaths.app + paths.images], reload);
 });
 

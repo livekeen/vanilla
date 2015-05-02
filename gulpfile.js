@@ -27,18 +27,34 @@ var
 // :: Variables
 // ---------------------------------
 
-var basepaths = {
-  app:          'app/',
-  dist:         '_dist/',
+var basePaths = {
+  src:          'app/',
+  dest:         '_dist/',
+  bower:        'bower_components/',
 };
 
 var paths = {
-  pages:        'views/pages/**/*',
-  styles:       'assets/styles/**/*',
-  scripts:      'assets/scripts/**/*',
-  images:       'assets/images/**/*',
-  fonts:        'assets/fonts/**/*',
-  extras:       ['assets/fonts/**/*', 'assets/favicons/**/*', 'assets/checkout/**/*'],
+  pages: {
+    src:        basePaths.src + 'views/pages/**/*',
+    dest:       basePaths.dest,
+  },
+  styles: {
+    src:        basePaths.src + 'assets/styles/**/*',
+    dest:       basePaths.dest,
+  },
+  scripts: {
+    src:        basePaths.src + 'assets/scripts/**/*',
+    dest:       basePaths.dest,
+  },
+  images: {
+    src:        basePaths.src + 'assets/images/**/*',
+    dest:       basePaths.dest,
+  },
+  fonts: {
+    src:        basePaths.src + 'assets/fonts/**/*',
+    dest:       basePaths.dest,
+  },
+  // extras:       ['assets/favicons/**/*', 'assets/checkout/**/*'],
 };
 
 var tasks = {
@@ -72,59 +88,59 @@ var AUTOPREFIXER_BROWSERS = [
 // ---------------------------------
 
 // Clean dist directory
-gulp.task('clean', del.bind(null, [basepaths.dist], {dot: true}));
+gulp.task('clean', del.bind(null, [basePaths.dest], {dot: true}));
 
 // Pages
 gulp.task(tasks.pages, function() {
-  return gulp.src(basepaths.app + paths.pages)
+  return gulp.src(paths.pages.src)
     .pipe(jade({pretty: true}))
-    .pipe(gulp.dest(basepaths.dist)); // exports .html
+    .pipe(gulp.dest(basePaths.dest)); // exports .html
 });
 
 // Styles
 gulp.task(tasks.styles, function() {
-  return gulp.src(basepaths.app + paths.styles)
+  return gulp.src(paths.styles.src)
     .pipe(sass({ style: 'expanded' }))
     .pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
-    .pipe(gulp.dest(basepaths.dist)) // exports *.css
+    .pipe(gulp.dest(paths.styles.dest)) // exports *.css
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())
-    .pipe(gulp.dest(basepaths.dist)) // exports *.min.css
+    .pipe(gulp.dest(paths.styles.dest)) // exports *.min.css
     .pipe(reload({stream: true}))
     .pipe(notify({ message: 'Styles task complete' }));
 });
 
 // Scripts
 gulp.task(tasks.scripts, function() {
-  return gulp.src(basepaths.app + paths.scripts)
+  return gulp.src(paths.scripts.src)
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(concat('functions.js'))
-    .pipe(gulp.dest(basepaths.dist)) // exports functions.js
+    .pipe(gulp.dest(paths.scripts.dest)) // exports functions.js
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(gulp.dest(basepaths.dist)) // exports functions.min.js
+    .pipe(gulp.dest(paths.scripts.dest)) // exports functions.min.js
     .pipe(notify({ message: 'Scripts task complete' }));
 });
 
 // Images
 gulp.task(tasks.images, function() {
-  return gulp.src(basepaths.app + paths.images)
+  return gulp.src(paths.images.src)
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
-    .pipe(gulp.dest(basepaths.dist))
+    .pipe(gulp.dest(paths.images.dest))
     .pipe(notify({ message: 'Images task complete' }));
 });
 
 // Fonts
 gulp.task(tasks.fonts, function () {
-  return gulp.src([basepaths.app + paths.fonts])
-    .pipe(gulp.dest(basepaths.dist));
+  return gulp.src(paths.fonts.src)
+    .pipe(gulp.dest(paths.fonts.dest));
 });
 
 // Copy all files at the root level (app)
 gulp.task('copy', function () {
-  // return gulp.src([basepaths.app + '*'], {dot: true})
-  //   .pipe(gulp.dest(basepaths.dist));
+  // return gulp.src([basePaths.src + '*'], {dot: true})
+  //   .pipe(gulp.dest(basePaths.dest));
 });
 
 // Watch files for changes & reload
@@ -137,13 +153,13 @@ gulp.task('serve', [tasks.styles], function () {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['.tmp', basepaths.dist]
+    server: ['.tmp', basePaths.dest]
   });
 
-  gulp.watch([basepaths.app + paths.pages], [tasks.pages, reload]);
-  gulp.watch([basepaths.app + paths.styles], [tasks.styles, reload]);
-  gulp.watch([basepaths.app + paths.scripts], [tasks.scripts, reload]);
-  gulp.watch([basepaths.app + paths.images], reload);
+  gulp.watch([paths.pages.src], [tasks.pages, reload]);
+  gulp.watch([paths.styles.src], [tasks.styles, reload]);
+  gulp.watch([paths.scripts.src], [tasks.scripts, reload]);
+  gulp.watch([paths.images.src], reload);
 });
 
 // Default task

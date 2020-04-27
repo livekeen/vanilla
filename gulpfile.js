@@ -4,22 +4,35 @@
 
 const
   gulp          = require('gulp'),
-  autoprefixer  = require('gulp-autoprefixer'),
   browserSync   = require('browser-sync').create(),
-  cache         = require('gulp-cache'),
   concat        = require('gulp-concat'),
   del           = require('del'),
   imagemin      = require('gulp-imagemin'),
   jshint        = require('gulp-jshint'),
   cleancss      = require('gulp-clean-css'),
   notify        = require('gulp-notify'),
+  postcss       = require('gulp-postcss'),
   pug           = require('gulp-pug'),
   rename        = require('gulp-rename'),
-  runSequence   = require('run-sequence'),
   sass          = require('gulp-sass'),
+  sourcemaps    = require('gulp-sourcemaps'),
+  // sugarss       = require('sugarss'),
   // stylus        = require('gulp-stylus'),
   // slim          = require('gulp-slim'),
   uglify        = require('gulp-uglify');
+
+const
+  autoprefixer  = require('autoprefixer'),
+  cssnano       = require('cssnano'),
+  cssimport     = require('postcss-import'),
+  tailwind      = require('tailwindcss');
+
+postCSSPlugins = [
+  autoprefixer(),
+  cssnano(),
+  cssimport(),
+  tailwind(),
+];
 
 const { src, dest, watch, series, parallel } = require('gulp');
 
@@ -106,10 +119,12 @@ function pages() {
 // Styles
 function styles() {
   return src(paths.styles.src)
-    .pipe(sass({ style: 'expanded' }))
-    .pipe(autoprefixer())
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .pipe(postcss(postCSSPlugins))
+    .pipe(sourcemaps.write('.'))
     .pipe(dest(paths.styles.dest)) // exports *.css
-    .pipe(rename({suffix: '.min'}))
+    .pipe(rename({ suffix: '.min' }))
     .pipe(cleancss())
     .pipe(dest(paths.styles.dest)) // exports *.min.css
     .pipe(browserSync.stream())
@@ -119,12 +134,14 @@ function styles() {
 // Scripts
 function scripts() {
   return src(paths.scripts.src)
+    .pipe(sourcemaps.init())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(concat('functions.js'))
+    .pipe(sourcemaps.write('.'))
     .pipe(dest(paths.scripts.dest)) // exports functions.js
     .pipe(rename({ suffix: '.min' }))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(dest(paths.scripts.dest)) // exports functions.min.js
     .pipe(browserSync.stream())
     .pipe(notify({ message: 'Scripts task complete' }));

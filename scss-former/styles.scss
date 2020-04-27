@@ -2,32 +2,28 @@
 // :: Table of Contents
 // ---------------------------------
 
-// :: Framework
 // :: Modules and Variables
 // :: Partials
 // :: Third-party
 
 // ---------------------------------
-// :: Framework
-// ---------------------------------
-
-@import "../../../node_modules/tailwindcss/base"
-@import "../../../node_modules/tailwindcss/components"
-@import "../../../node_modules/tailwindcss/utilities"
-
-// ---------------------------------
 // :: Modules and Variables
 // ---------------------------------
 
-@import "partials/typography"
+@import "variables"
+@import "mixins"
+@import "normalize"
 
 // ---------------------------------
 // :: Partials
 // ---------------------------------
 
+@import 'partials/_normalize'
+
+@import 'partials/_grids'
+@import 'partials/_hyperlinks'
+@import 'partials/_typography'
 
 // ---------------------------------
 // :: Third-party
 // ---------------------------------
-
-

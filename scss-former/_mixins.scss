@@ -12,15 +12,15 @@
 // ---------------------------------
 
 =respond-to($media)
-  @if $media == wide-screens
+  @if $media = wide-screens
     @media only screen and (min-width: $break-large - 1)
       @content
 
-  @else if $media == medium-screens
+  @else if $media = medium-screens
     @media only screen and (min-width: $break-medium - 1)
       @content
 
-  @else if $media == small-screens
+  @else if $media = small-screens
     @media only screen and (min-width: $break-small)
       @content
 

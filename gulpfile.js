@@ -10,16 +10,15 @@ var
   concat        = require('gulp-concat'),
   del           = require('del'),
   imagemin      = require('gulp-imagemin'),
-  jade          = require('gulp-jade'),
   jshint        = require('gulp-jshint'),
-  minifycss     = require('gulp-minify-css'),
+  cleancss      = require('gulp-clean-css'),
   notify        = require('gulp-notify'),
+  pug           = require('gulp-pug'),
   reload        = browserSync.reload,
   rename        = require('gulp-rename'),
   runSequence   = require('run-sequence'),
-  sass          = require('gulp-ruby-sass'),
-  stylus        = require('gulp-stylus'),
-  // sass          = require('gulp-sass'),
+  sass          = require('gulp-sass'),
+  // stylus        = require('gulp-stylus'),
   // slim          = require('gulp-slim'),
   uglify        = require('gulp-uglify');
 
@@ -93,7 +92,7 @@ gulp.task('clean', del.bind(null, [basePaths.dest], {dot: true}));
 // Pages
 gulp.task(tasks.pages, function() {
   return gulp.src(paths.pages.src)
-    .pipe(jade({pretty: true}))
+    .pipe(pug({pretty: true}))
     .pipe(gulp.dest(basePaths.dest)); // exports .html
 });
 
@@ -104,7 +103,7 @@ gulp.task(tasks.styles, function() {
     .pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
     .pipe(gulp.dest(paths.styles.dest)) // exports *.css
     .pipe(rename({suffix: '.min'}))
-    .pipe(minifycss())
+    .pipe(cleancss())
     .pipe(gulp.dest(paths.styles.dest)) // exports *.min.css
     .pipe(reload({stream: true}))
     .pipe(notify({ message: 'Styles task complete' }));

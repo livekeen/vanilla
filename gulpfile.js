@@ -22,6 +22,8 @@ var
   // slim          = require('gulp-slim'),
   uglify        = require('gulp-uglify');
 
+const { series, parallel } = require('gulp');
+
 // ---------------------------------
 // :: Variables
 // ---------------------------------
@@ -64,18 +66,6 @@ var tasks = {
   fonts:        'fonts',
 };
 
-var AUTOPREFIXER_BROWSERS = [
-  'ie >= 10',
-  'ie_mob >= 10',
-  'ff >= 30',
-  'chrome >= 34',
-  'safari >= 7',
-  'opera >= 23',
-  'ios >= 7',
-  'android >= 4.4',
-  'bb >= 10'
-];
-
 // REMOVE LATER:
 // IDEAS FOR IMPROVING GULPFILE:
 // https://github.com/google/web-starter-kit
@@ -90,27 +80,27 @@ var AUTOPREFIXER_BROWSERS = [
 gulp.task('clean', del.bind(null, [basePaths.dest], {dot: true}));
 
 // Pages
-gulp.task(tasks.pages, function() {
+gulp.task(tasks.pages, series(function() {
   return gulp.src(paths.pages.src)
     .pipe(pug({pretty: true}))
     .pipe(gulp.dest(basePaths.dest)); // exports .html
-});
+}));
 
 // Styles
-gulp.task(tasks.styles, function() {
+gulp.task(tasks.styles, series(function() {
   return gulp.src(paths.styles.src)
     .pipe(sass({ style: 'expanded' }))
-    .pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
+    .pipe(autoprefixer())
     .pipe(gulp.dest(paths.styles.dest)) // exports *.css
     .pipe(rename({suffix: '.min'}))
     .pipe(cleancss())
     .pipe(gulp.dest(paths.styles.dest)) // exports *.min.css
     .pipe(reload({stream: true}))
     .pipe(notify({ message: 'Styles task complete' }));
-});
+}));
 
 // Scripts
-gulp.task(tasks.scripts, function() {
+gulp.task(tasks.scripts, series(function() {
   return gulp.src(paths.scripts.src)
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
@@ -120,30 +110,30 @@ gulp.task(tasks.scripts, function() {
     .pipe(uglify())
     .pipe(gulp.dest(paths.scripts.dest)) // exports functions.min.js
     .pipe(notify({ message: 'Scripts task complete' }));
-});
+}));
 
 // Images
-gulp.task(tasks.images, function() {
+gulp.task(tasks.images, series(function() {
   return gulp.src(paths.images.src)
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
     .pipe(gulp.dest(paths.images.dest))
     .pipe(notify({ message: 'Images task complete' }));
-});
+}));
 
 // Fonts
-gulp.task(tasks.fonts, function () {
+gulp.task(tasks.fonts, series(function () {
   return gulp.src(paths.fonts.src)
     .pipe(gulp.dest(paths.fonts.dest));
-});
+}));
 
 // Copy all files at the root level (app)
-gulp.task('copy', function () {
+gulp.task('copy', series(function () {
   // return gulp.src([basePaths.src + '*'], {dot: true})
   //   .pipe(gulp.dest(basePaths.dest));
-});
+}));
 
 // Watch files for changes & reload
-gulp.task('serve', [tasks.styles], function () {
+gulp.task('serve', series([tasks.styles], function () {
   browserSync({
     notify: false,
     // Customize the BrowserSync console logging prefix
@@ -155,13 +145,13 @@ gulp.task('serve', [tasks.styles], function () {
     server: ['.tmp', basePaths.dest]
   });
 
-  gulp.watch([paths.pages.src], [tasks.pages, reload]);
-  gulp.watch([paths.styles.src], [tasks.styles, reload]);
-  gulp.watch([paths.scripts.src], [tasks.scripts, reload]);
-  gulp.watch([paths.images.src], reload);
-});
+  gulp.watch(paths.pages.src, series(tasks.pages, reload));
+  gulp.watch(paths.styles.src, series(tasks.styles, reload));
+  gulp.watch(paths.scripts.src, series(tasks.scripts, reload));
+  gulp.watch(paths.images.src, reload);
+}));
 
 // Default task
-gulp.task('default', ['clean'], function (cb) {
-  runSequence(tasks.styles, [tasks.scripts, tasks.pages, tasks.images, tasks.fonts, 'copy'], cb);
-});
+gulp.task('default', series('clean', function (cb) {
+  parallel(tasks.styles, series(tasks.scripts, tasks.pages, tasks.images, tasks.fonts, 'copy'), cb);
+}));

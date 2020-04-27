@@ -2,10 +2,10 @@
 // :: Load Gulp & plugins we'll use
 // ---------------------------------
 
-var
+const
   gulp          = require('gulp'),
   autoprefixer  = require('gulp-autoprefixer'),
-  browserSync   = require('browser-sync'),
+  browserSync   = require('browser-sync').create(),
   cache         = require('gulp-cache'),
   concat        = require('gulp-concat'),
   del           = require('del'),
@@ -14,7 +14,6 @@ var
   cleancss      = require('gulp-clean-css'),
   notify        = require('gulp-notify'),
   pug           = require('gulp-pug'),
-  reload        = browserSync.reload,
   rename        = require('gulp-rename'),
   runSequence   = require('run-sequence'),
   sass          = require('gulp-sass'),
@@ -22,7 +21,7 @@ var
   // slim          = require('gulp-slim'),
   uglify        = require('gulp-uglify');
 
-const { series, parallel } = require('gulp');
+const { src, dest, watch, series, parallel } = require('gulp');
 
 // ---------------------------------
 // :: Variables
@@ -31,7 +30,6 @@ const { series, parallel } = require('gulp');
 var basePaths = {
   src:          'app/',
   dest:         '_dist/',
-  bower:        'bower_components/',
 };
 
 var paths = {
@@ -58,100 +56,102 @@ var paths = {
   // extras:       ['assets/favicons/**/*', 'assets/checkout/**/*'],
 };
 
-var tasks = {
-  pages:        'pages',
-  styles:       'styles',
-  scripts:      'scripts',
-  images:       'images',
-  fonts:        'fonts',
-};
-
 // REMOVE LATER:
 // IDEAS FOR IMPROVING GULPFILE:
 // https://github.com/google/web-starter-kit
-// http://www.justinmccandless.com/blog/A+Tutorial+for+Getting+Started+with+Gulp
-// http://markgoodyear.com/2014/01/getting-started-with-gulp
+// https://gist.github.com/jeromecoupe/0b807b0c1050647eb340360902c3203a
 
 // ---------------------------------
 // :: Tasks
 // ---------------------------------
 
 // Clean dist directory
-gulp.task('clean', del.bind(null, [basePaths.dest], {dot: true}));
+function clean() {
+  return del([basePaths.dest]);
+}
+
+// Watch files for changes & reload
+function watchFiles(done) {
+  watch(paths.pages.src, series(pages, reload));
+  watch(paths.styles.src, styles);
+  watch(paths.scripts.src, scripts);
+  watch(paths.images.src, reload);
+  done();
+}
+
+function connect(done) {
+  browserSync.init({
+    notify: false,
+    server: {
+      baseDir: basePaths.dest
+    },
+    port: 3000
+  });
+  done();
+}
+
+function reload(done) {
+  browserSync.reload();
+  done();
+}
 
 // Pages
-gulp.task(tasks.pages, series(function() {
-  return gulp.src(paths.pages.src)
-    .pipe(pug({pretty: true}))
-    .pipe(gulp.dest(basePaths.dest)); // exports .html
-}));
+function pages() {
+  return src(paths.pages.src)
+    .pipe(pug())
+    .pipe(dest(basePaths.dest)) // exports .html
+    .pipe(notify({ message: 'Pages task complete' }));
+}
 
 // Styles
-gulp.task(tasks.styles, series(function() {
-  return gulp.src(paths.styles.src)
+function styles() {
+  return src(paths.styles.src)
     .pipe(sass({ style: 'expanded' }))
     .pipe(autoprefixer())
-    .pipe(gulp.dest(paths.styles.dest)) // exports *.css
+    .pipe(dest(paths.styles.dest)) // exports *.css
     .pipe(rename({suffix: '.min'}))
     .pipe(cleancss())
-    .pipe(gulp.dest(paths.styles.dest)) // exports *.min.css
-    .pipe(reload({stream: true}))
+    .pipe(dest(paths.styles.dest)) // exports *.min.css
+    .pipe(browserSync.stream())
     .pipe(notify({ message: 'Styles task complete' }));
-}));
+}
 
 // Scripts
-gulp.task(tasks.scripts, series(function() {
-  return gulp.src(paths.scripts.src)
+function scripts() {
+  return src(paths.scripts.src)
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(concat('functions.js'))
-    .pipe(gulp.dest(paths.scripts.dest)) // exports functions.js
+    .pipe(dest(paths.scripts.dest)) // exports functions.js
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(gulp.dest(paths.scripts.dest)) // exports functions.min.js
+    .pipe(dest(paths.scripts.dest)) // exports functions.min.js
+    .pipe(browserSync.stream())
     .pipe(notify({ message: 'Scripts task complete' }));
-}));
+}
 
 // Images
-gulp.task(tasks.images, series(function() {
-  return gulp.src(paths.images.src)
+function images() {
+  return src(paths.images.src)
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
-    .pipe(gulp.dest(paths.images.dest))
+    .pipe(dest(paths.images.dest))
     .pipe(notify({ message: 'Images task complete' }));
-}));
+}
 
 // Fonts
-gulp.task(tasks.fonts, series(function () {
-  return gulp.src(paths.fonts.src)
-    .pipe(gulp.dest(paths.fonts.dest));
-}));
+function fonts() {
+  return src(paths.fonts.src)
+    .pipe(dest(paths.fonts.dest));
+}
 
-// Copy all files at the root level (app)
-gulp.task('copy', series(function () {
-  // return gulp.src([basePaths.src + '*'], {dot: true})
-  //   .pipe(gulp.dest(basePaths.dest));
-}));
+// Defining complex tasks
+const build = gulp.series(clean, parallel(styles, images, pages, scripts, fonts));
+const serve = gulp.series(build, watchFiles, connect);
 
-// Watch files for changes & reload
-gulp.task('serve', series([tasks.styles], function () {
-  browserSync({
-    notify: false,
-    // Customize the BrowserSync console logging prefix
-    logPrefix: 'WSK',
-    // Run as an https by uncommenting 'https: true'
-    // Note: this uses an unsigned certificate which on first access
-    //       will present a certificate warning in the browser.
-    // https: true,
-    server: ['.tmp', basePaths.dest]
-  });
+// Tasks
+exports.build = build;
+exports.clean = clean;
+exports.pages = pages;
+exports.serve = serve;
 
-  gulp.watch(paths.pages.src, series(tasks.pages, reload));
-  gulp.watch(paths.styles.src, series(tasks.styles, reload));
-  gulp.watch(paths.scripts.src, series(tasks.scripts, reload));
-  gulp.watch(paths.images.src, reload);
-}));
-
-// Default task
-gulp.task('default', series('clean', function (cb) {
-  parallel(tasks.styles, series(tasks.scripts, tasks.pages, tasks.images, tasks.fonts, 'copy'), cb);
-}));
+exports.default = build;

@@ -83,6 +83,10 @@ function clean() {
   return del([basePaths.dest]);
 }
 
+function cleanEmptyFolders() {
+  return del([basePaths.dest + 'components.min', basePaths.dest + 'components']);
+}
+
 // Watch files for changes & reload
 function watchFiles(done) {
   watch(paths.pages.src, series(pages, reload));
@@ -162,7 +166,7 @@ function fonts() {
 }
 
 // Defining complex tasks
-const build = gulp.series(clean, parallel(styles, images, pages, scripts, fonts));
+const build = gulp.series(clean, parallel(styles, images, pages, scripts, fonts), cleanEmptyFolders);
 const serve = gulp.series(build, watchFiles, connect);
 
 // Tasks

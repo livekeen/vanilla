@@ -129,10 +129,11 @@ function styles() {
     .pipe(postcss(postCSSPlugins))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(paths.styles.dest)) // exports *.css
+    .pipe(browserSync.stream()) // injects css once done
     .pipe(rename({ suffix: '.min' }))
     .pipe(cleancss())
     .pipe(dest(paths.styles.dest)) // exports *.min.css
-    .pipe(browserSync.stream())
+    .pipe(browserSync.stream()) // injects css once done - if page is using the .min
     .pipe(notify({ message: 'Styles task complete' }));
 }
 

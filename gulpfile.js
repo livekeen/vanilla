@@ -47,6 +47,7 @@ var basePaths = {
 
 var paths = {
   pages: {
+    watch:      basePaths.src + 'views/**/*',
     src:        basePaths.src + 'views/pages/**/*',
     dest:       basePaths.dest,
   },
@@ -89,10 +90,10 @@ function cleanEmptyFolders() {
 
 // Watch files for changes & reload
 function watchFiles(done) {
-  watch(paths.pages.src, series(pages, reload));
+  watch(paths.pages.watch, series(pages, reload));
   watch(paths.styles.src, styles);
   watch(paths.scripts.src, scripts);
-  watch(paths.images.src, reload);
+  watch(paths.images.src, images);
   done();
 }
 

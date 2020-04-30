@@ -7,6 +7,7 @@ const
   browserSync   = require('browser-sync').create(),
   concat        = require('gulp-concat'),
   del           = require('del'),
+  ghpages       = require('gulp-gh-pages'),
   imagemin      = require('gulp-imagemin'),
   jshint        = require('gulp-jshint'),
   cleancss      = require('gulp-clean-css'),
@@ -15,7 +16,6 @@ const
   pug           = require('gulp-pug'),
   rename        = require('gulp-rename'),
   sass          = require('gulp-sass'),
-  sourcemaps    = require('gulp-sourcemaps'),
   // sugarss       = require('sugarss'),
   // stylus        = require('gulp-stylus'),
   // slim          = require('gulp-slim'),
@@ -113,6 +113,13 @@ function reload(done) {
   done();
 }
 
+// Deploy to Github Pages
+// Make sure to create a branch called 'gh-pages' before deploying
+function deployFiles() {
+  return src(basePaths.dest + "**/*")
+    .pipe(ghpages())
+}
+
 // Pages
 function pages() {
   return src(paths.pages.src)
@@ -123,11 +130,9 @@ function pages() {
 
 // Styles
 function styles() {
-  return src(paths.styles.src)
-    .pipe(sourcemaps.init())
+  return src(paths.styles.src, { sourcemaps: true })
     .pipe(sass())
     .pipe(postcss(postCSSPlugins))
-    .pipe(sourcemaps.write('.'))
     .pipe(dest(paths.styles.dest)) // exports *.css
     .pipe(browserSync.stream()) // injects css once done
     .pipe(rename({ suffix: '.min' }))
@@ -139,12 +144,10 @@ function styles() {
 
 // Scripts
 function scripts() {
-  return src(paths.scripts.src)
-    .pipe(sourcemaps.init())
+  return src(paths.scripts.src, { sourcemaps: true })
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(concat('functions.js'))
-    .pipe(sourcemaps.write('.'))
     .pipe(dest(paths.scripts.dest)) // exports functions.js
     .pipe(rename({ suffix: '.min' }))
     // .pipe(uglify())
@@ -170,11 +173,13 @@ function fonts() {
 // Defining complex tasks
 const build = gulp.series(clean, parallel(styles, images, pages, scripts, fonts), cleanEmptyFolders);
 const serve = gulp.series(build, watchFiles, connect);
+const deploy = gulp.series(build, deployFiles);
 
 // Tasks
-exports.build = build;
-exports.clean = clean;
-exports.pages = pages;
-exports.serve = serve;
+exports.build   = build;
+exports.clean   = clean;
+exports.pages   = pages;
+exports.serve   = serve;
+exports.deploy  = deploy;
 
 exports.default = build;
